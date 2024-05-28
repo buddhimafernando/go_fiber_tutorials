@@ -67,5 +67,21 @@ func main(){
 		return c.Status(http.StatusCreated).JSON(updatedUser)
 	})
 
+	// DELETE requests to delete user info
+
+	app.Delete("/deleteUser/:id", func(c *fiber.Ctx) error {
+		id := c.Params("id")
+
+		for i, lang := range userInfo {
+			if lang.Id == id {
+				userInfo = append(userInfo[:i], userInfo[i+1:]...)
+				break
+			}
+		}
+		return c.Status(http.StatusNoContent).JSON(fiber.Map{"data": userInfo})
+
+	})
+
+
 	app.Listen(":3000")
 }
