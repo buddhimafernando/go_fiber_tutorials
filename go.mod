@@ -1,4 +1,4 @@
-module golang-fiber-crud
+module file_server
 
 go 1.22.3
 
